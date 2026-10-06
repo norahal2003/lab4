@@ -1,0 +1,78 @@
+Prolog Queries and Answers:
+
+1)  Query: ?- house = house.
+
+ True
+
+; Both sides are the same atom, so they can be unified.
+
+2)  Query: ?- house = abc.
+
+ False
+
+; house and abc are different constants (atoms), so they cannot be
+unified.
+
+3)  Query: ?- edge(a,b) = edge(C,b).
+
+ True
+
+so : C = a
+
+; Both structures have the same functor edge and the second argument
+is the same. Variable C can take the value a.
+
+4)  Query: ?- edge(a,d) = edge(C,B).
+
+ True
+
+so result: C = a B = d
+
+; Variables can be replaced by matching values to make both terms
+identical.
+
+5)  Query: ?- edge(C,B) = edge(a,d).
+
+ True
+
+so result: C = a B = d
+
+; C and B are variables, so they can be unified with a and d.
+
+6)  Query: ?- edge(A,f(g,h)) = edge(a,B).
+
+ True
+
+so result: A = a B = f(g,h)
+
+; The structure is the same and the variables can take the required
+values.
+
+7)  Query: ?- edge(A,A) = edge(b,c).
+
+ False
+
+; A appears twice, so it must have the same value in both positions.
+The second term has b and c, which are different.
+
+8)  Query: ?- edge(A,A) = edge(b,b).
+
+ True
+
+so result: A = b
+
+; Both positions contain the same value b, so A can be unified with b.
+
+9)  Query: ?- A = B, B = f.
+
+ True
+
+so result: A = f B = f
+
+; B becomes f, then A takes the same value as B.
+
+10) Query: ?- A = B, B = f, A = e.
+
+ False
+
+; A becomes f from B = f, but the last condition requires A = e. f and e are different constants, so unification fails.
